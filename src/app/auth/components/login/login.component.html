@@ -1,0 +1,51 @@
+<div class="login">
+  <h2 class="login__header text-center fs-2">Sing in</h2>
+  <form
+    class="login__form row justify-content-center"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+  >
+    <ng-error-message
+      *ngIf="error$ | async as validationError"
+      [error]="validationError"
+    ></ng-error-message>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your login</mat-label>
+      <input
+        matInput
+        placeholder="username"
+        formControlName="username"
+        required
+      />
+      <mat-error *ngIf="username?.invalid">username is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+        required
+      />
+      <mat-error *ngIf="password?.invalid">password is required</mat-error>
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      class="col-3"
+      [disabled]="isSubmitting$ | async"
+    >
+      Submit
+    </button>
+  </form>
+</div>
