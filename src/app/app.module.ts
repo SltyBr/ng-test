@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ToolbarModule } from 'src/app/shared/modules/toolbar/toolbar.module';
 import { AppComponent } from 'src/app/app.component';
 import { AuthInterceptor } from 'src/app/shared/services/authinterceptor.interceptor';
+import { ProductsModule } from 'src/app/products/products.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,8 @@ import { AuthInterceptor } from 'src/app/shared/services/authinterceptor.interce
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    ToolbarModule
+    ToolbarModule,
+    ProductsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
