@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 
 import {
   getProductsAction,
@@ -9,6 +9,8 @@ import {
 } from 'src/app/products/store/actions/getProducts.action';
 import { ProductsService } from 'src/app/products/services/products.service';
 import { ProductsResponseInterface } from 'src/app/products/types/productsResponse.interface';
+import { PersistanceService } from 'src/app/shared/services/persistance.service';
+import { localStorageKeys } from 'src/environments/localStorageKeys';
 
 @Injectable()
 export class GetProductsEffect {
@@ -16,6 +18,10 @@ export class GetProductsEffect {
     return this.actions$.pipe(
       ofType(getProductsAction),
       switchMap(({url}) => {
+        const token = this.persistanceService.get(localStorageKeys.jwt);
+        if (JSON.stringify(token) === '{}') {
+          return of(getProductsFailureAction());
+        }
         return this.productsService.getProducts(url).pipe(
           map((response: ProductsResponseInterface) => {
             return getProductsSuccessAction({
@@ -32,6 +38,7 @@ export class GetProductsEffect {
 
   constructor(
     public actions$: Actions,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private persistanceService: PersistanceService
   ) {}
 }
