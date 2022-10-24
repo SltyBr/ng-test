@@ -25,7 +25,6 @@ const routes: Routes = [
     EffectsModule.forFeature([GetProductsEffect]),
     StoreModule.forFeature('products', reducers),
     MatGridListModule,
-    MatCardModule,
     MatButtonModule
   ],
   providers: [ProductsService],

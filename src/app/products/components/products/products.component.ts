@@ -19,6 +19,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(getProductsAction());
+    this.initializeValues();
   }
 
   initializeValues() {
