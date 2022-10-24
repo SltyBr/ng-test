@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { getUserProfileAction, getUserProfileFailureAction, getUserProfileSuccessAction } from 'src/app/auth/store/actions/getUserProfile.action';
 import { loginAction, loginFailureAction, loginSuccessAction } from 'src/app/auth/store/actions/login.action';
+import { logoutAction } from 'src/app/auth/store/actions/logout.action';
 import { AuthStateInterface } from 'src/app/auth/types/authState.interface';
 
 const initialState: AuthStateInterface = {
@@ -62,6 +63,10 @@ const authReducer = createReducer(
       isLoggedIn: false,
       userProfile: null
     })
+  ),
+  on(
+    logoutAction,
+    (state): AuthStateInterface => initialState
   )
 );
 

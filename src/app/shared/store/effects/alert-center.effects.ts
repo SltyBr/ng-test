@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs/operators';
 import { getUserProfileSuccessAction } from 'src/app/auth/store/actions/getUserProfile.action';
 import { loginSuccessAction } from 'src/app/auth/store/actions/login.action';
+import { logoutAction } from 'src/app/auth/store/actions/logout.action';
 import { getProductFailureAction, getProductSuccessAction } from 'src/app/product/store/actions/getProduct.action';
 import { getProductsSuccessAction } from 'src/app/products/store/actions/getProducts.action';
 
@@ -58,6 +59,17 @@ export class AlertEffects {
       this.actions$.pipe(
         ofType(getUserProfileSuccessAction),
         tap(() => this.toastr.success('Profile loaded!', '', {
+          timeOut: 1000
+        }))
+      ),
+    { dispatch: false }
+  );
+
+  logoutEffect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(logoutAction),
+        tap(() => this.toastr.success('Logout successful!', '', {
           timeOut: 1000
         }))
       ),

@@ -14,6 +14,7 @@ import { LoginEffect } from 'src/app/auth/store/effects/login.effect';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ErrorMessageModule } from 'src/app/shared/modules/error-message/error-message.module';
 import { GetUserProfileEffect } from 'src/app/auth/store/effects/getUserProfile.effect';
+import { LogoutEffect } from 'src/app/auth/store/effects/logout.effect';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent}
@@ -28,7 +29,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([LoginEffect, GetUserProfileEffect]),
+    EffectsModule.forFeature([LoginEffect, GetUserProfileEffect, LogoutEffect]),
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
