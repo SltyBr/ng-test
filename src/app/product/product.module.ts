@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductComponent } from './components/product/product.component';
-import { ProductService } from 'src/app/shared/services/product.service';
 import { EffectsModule } from '@ngrx/effects';
-import { GetProductEffect } from 'src/app/product/store/effects/getProduct.effect';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from 'src/app/product/store/reducers';
 import { RouterModule, Routes } from '@angular/router';
+import { SwiperModule } from 'swiper/angular';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
+
+import { reducers } from 'src/app/product/store/reducers';
+import { GetProductEffect } from 'src/app/product/store/effects/getProduct.effect';
+import { ProductService } from 'src/app/shared/services/product.service';
+import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
   {
@@ -23,7 +28,11 @@ const routes: Routes = [
     CommonModule,
     EffectsModule.forFeature([GetProductEffect]),
     StoreModule.forFeature('product', reducers),
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SwiperModule,
+    MatCardModule,
+    MatListModule,
+    MatButtonModule
   ],
   providers: [
     ProductService

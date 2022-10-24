@@ -1,0 +1,19 @@
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
+.product {
+  &__swiper {
+    height: 400px;
+  }
+}
+
+.swiper {
+  width: 50%;
+  height: 100%;
+
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+  }
+}

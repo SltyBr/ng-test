@@ -1,1 +1,37 @@
-<p>product works!</p>
+<div *ngIf="product$ | async as product" class="product">
+  <button mat-button color="primary" (click)="navigateBack()">Back to products</button>
+  <div class="product__swiper">
+    <swiper
+      [slidesPerView]="1"
+      [spaceBetween]="10"
+      [navigation]="true"
+      [pagination]="{ clickable: true }"
+    >
+      <ng-template swiperSlide *ngFor="let image of product.images">
+        <img [src]="image" [alt]="image" />
+      </ng-template>
+    </swiper>
+  </div>
+  <mat-card class="product__info">
+    <mat-card-header>
+      <mat-card-title>{{ product.title }} {{ product.brand }}</mat-card-title>
+      <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{ product.description }}
+      </p>
+    </mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem" class="product__price"
+        >Price: <span><del>{{ product.price }}&#36;</del></span>
+        &nbsp;
+        <span
+          >{{ product.price * (100 - product.discountPercentage)/100 | number: '1.0-0' }}&#36; with discount</span
+        >
+      </mat-list-item>
+      <mat-list-item role="listitem">Rating: {{ product.rating }}</mat-list-item>
+      <mat-list-item role="listitem">Stock: {{ product.stock }}</mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>
