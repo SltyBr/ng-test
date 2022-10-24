@@ -11,6 +11,7 @@ import {
   getUserProfileSuccessAction,
 } from 'src/app/auth/store/actions/getUserProfile.action';
 import { localStorageKeys } from 'src/environments/localStorageKeys';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class GetUserProfileEffect {
@@ -29,6 +30,8 @@ export class GetUserProfileEffect {
             });
           }),
           catchError(() => {
+            this.persistanceService.remove(localStorageKeys.jwt);
+            this.persistanceService.remove(localStorageKeys.userId);
             return of(getUserProfileFailureAction());
           })
         );
@@ -36,9 +39,19 @@ export class GetUserProfileEffect {
     );
   });
 
+  redirectOnTokenExpiredEffect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(getUserProfileFailureAction),
+        tap(() => this.router.navigateByUrl('/login'))
+      ),
+    { dispatch: false }
+  );
+
   constructor(
     public actions$: Actions,
     private authService: AuthService,
-    private persistanceService: PersistanceService
+    private persistanceService: PersistanceService,
+    private router: Router
   ) {}
 }
