@@ -1,14 +1,20 @@
 <mat-toolbar color="primary" class="toolbar mb-5">
   <div class="container d-flex justify-content-between">
-    <span class="toolbar__project-name fs-2" role="button">{{
-      projectName
-    }}</span>
+    <span class="toolbar__project-name fs-2">{{ projectName }}</span>
     <div class="toolbar__right-block">
-      <a mat-button class="toolbar_link fs-5" [routerLink]="['/products']" routerLinkActive="active"
+      <a
+        mat-button
+        class="toolbar_link fs-5"
+        [routerLink]="['/products']"
+        routerLinkActive="active"
         >Products</a
       >
       <ng-template #signIn>
-        <a mat-button class="toolbar_link fs-5" [routerLink]="['/login']" routerLinkActive="active"
+        <a
+          mat-button
+          class="toolbar_link fs-5"
+          [routerLink]="['/login']"
+          routerLinkActive="active"
           >Sing in</a
         >
       </ng-template>
