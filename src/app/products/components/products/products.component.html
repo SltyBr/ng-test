@@ -1,4 +1,6 @@
 <div *ngIf="(products$ | async) as productsData">
+  <!-- <ng-pagination [total]="productsData.total" [limit]="limit" [url]="baseUrl" [currentPage]="currentPage"></ng-pagination> -->
+  <ng-pagination [total]="productsData.total" [url]="baseUrl" [currentPage]="currentPage"></ng-pagination>
   <mat-grid-list cols="3" gutterSize="15px">
     <mat-grid-tile *ngFor="let product of productsData.products" class="shadow bg-white rounded">
       <div class="product p-2">

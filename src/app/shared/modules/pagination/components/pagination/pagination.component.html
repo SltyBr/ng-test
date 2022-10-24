@@ -1,0 +1,13 @@
+<mat-paginator [length]="totalProps"
+               [pageSize]="30"
+               [pageIndex]="currentPageProps - 1"
+               (page)="OnPageChange($event)"
+               aria-label="Select page">
+</mat-paginator>
+
+<div *ngIf="pageEvent">
+  <h5>Page Change Event Properties</h5>
+  <div>List length: {{pageEvent.length}}</div>
+  <div>Page size: {{pageEvent.pageSize}}</div>
+  <div>Page index: {{pageEvent.pageIndex}}</div>
+</div>

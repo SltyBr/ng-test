@@ -9,7 +9,7 @@ export class ProductsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProducts(): Observable<ProductsResponseInterface> {
-    return this.httpClient.get<ProductsResponseInterface>(productsRoute)
+  getProducts(url: string): Observable<ProductsResponseInterface> {
+    return this.httpClient.get<ProductsResponseInterface>(url)
   }
 }
