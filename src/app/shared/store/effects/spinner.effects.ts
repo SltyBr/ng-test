@@ -12,6 +12,11 @@ import {
   loginSuccessAction,
 } from 'src/app/auth/store/actions/login.action';
 import {
+  getProductAction,
+  getProductFailureAction,
+  getProductSuccessAction,
+} from 'src/app/product/store/actions/getProduct.action';
+import {
   getProductsAction,
   getProductsSuccessAction,
 } from 'src/app/products/store/actions/getProducts.action';
@@ -21,7 +26,12 @@ export class SpinnerEffects {
   spinneron$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(loginAction, getProductsAction, getUserProfileAction),
+        ofType(
+          loginAction,
+          getProductsAction,
+          getUserProfileAction,
+          getProductAction
+        ),
         tap(() => this.spinner.show())
       ),
     { dispatch: false }
@@ -35,7 +45,9 @@ export class SpinnerEffects {
           loginFailureAction,
           getProductsSuccessAction,
           getUserProfileFailureAction,
-          getProductsSuccessAction
+          getProductsSuccessAction,
+          getProductSuccessAction,
+          getProductFailureAction
         ),
         tap(() => {
           this.spinner.hide();
