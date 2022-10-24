@@ -18,6 +18,7 @@ import { AlertEffects } from 'src/app/shared/store/effects/alert-center.effects'
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SpinnerEffects } from 'src/app/shared/store/effects/spinner.effects';
+import { ProductModule } from 'src/app/product/product.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +35,8 @@ import { SpinnerEffects } from 'src/app/shared/store/effects/spinner.effects';
     ToolbarModule,
     ProductsModule,
     NgxSpinnerModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ProductModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
