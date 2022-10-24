@@ -5,6 +5,9 @@ export interface UserProfileInterface {
   firstName: string,
   lastName: string,
   gender: string,
+  birthDate: string,
   image: string,
-  token: string
+  token: string,
+  phone: string,
+  university: string
 }
