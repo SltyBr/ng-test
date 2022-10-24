@@ -7,13 +7,13 @@ import { GetProductsEffect } from 'src/app/products/store/effects/getProducts.ef
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 
 import { reducers } from 'src/app/products/store/reducers';
+import { ProductsAccessGuard } from 'src/app/auth/guards/products-access.guard';
 
 const routes: Routes = [
-  { path: 'products', component: ProductsComponent },
+  { path: 'products', component: ProductsComponent, canActivate: [ProductsAccessGuard] },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
 ];
 
