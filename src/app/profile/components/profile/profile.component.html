@@ -1,0 +1,16 @@
+<button mat-button color="primary" (click)="navigateBack()">Go shopping</button>
+<mat-card class="profile-card" *ngIf="(userProfile$ | async) as userProfile">
+  <mat-card-header>
+    <mat-card-title>{{userProfile.firstName}} {{userProfile.lastName}}</mat-card-title>
+    <mat-card-subtitle>{{userProfile.username}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="userProfile.image" [alt]="userProfile.firstName">
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item role="listitem">Birth date: {{ userProfile.birthDate }}</mat-list-item>
+      <mat-list-item role="listitem">Gender: {{ userProfile.gender }}</mat-list-item>
+      <mat-list-item role="listitem">University: {{ userProfile.university }}</mat-list-item>
+      <mat-list-item role="listitem">Phone: {{ userProfile.phone }}</mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

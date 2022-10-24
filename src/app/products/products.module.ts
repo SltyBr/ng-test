@@ -15,7 +15,7 @@ import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.m
 
 const routes: Routes = [
   { path: 'products', component: ProductsComponent, canActivate: [ProductsAccessGuard] },
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { path: '', redirectTo: '/products', pathMatch: 'full' }
 ];
 
 @NgModule({

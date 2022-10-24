@@ -19,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SpinnerEffects } from 'src/app/shared/store/effects/spinner.effects';
 import { ProductModule } from 'src/app/product/product.module';
+import { ProfileModule } from 'src/app/profile/profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +37,8 @@ import { ProductModule } from 'src/app/product/product.module';
     ProductsModule,
     NgxSpinnerModule,
     ToastrModule.forRoot(),
-    ProductModule
+    ProductModule,
+    ProfileModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
