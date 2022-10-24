@@ -20,4 +20,8 @@ export class PersistanceService {
       return null;
     }
   }
+
+  remove(key: string) {
+    localStorage.removeItem(key);
+  }
 }
