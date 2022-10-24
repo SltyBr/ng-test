@@ -14,6 +14,8 @@ import { ToolbarModule } from 'src/app/shared/modules/toolbar/toolbar.module';
 import { AppComponent } from 'src/app/app.component';
 import { AuthInterceptor } from 'src/app/shared/services/authinterceptor.interceptor';
 import { ProductsModule } from 'src/app/products/products.module';
+import { AlertEffects } from 'src/app/shared/store/effects/alert-center.effects';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,9 +28,10 @@ import { ProductsModule } from 'src/app/products/products.module';
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AlertEffects]),
     ToolbarModule,
-    ProductsModule
+    ProductsModule,
+    ToastrModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
