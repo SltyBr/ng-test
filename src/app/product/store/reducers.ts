@@ -32,9 +32,10 @@ const productReducer = createReducer(
   ),
   on(
     getProductFailureAction,
-    (state): ProductStateInterface => ({
+    (state, action): ProductStateInterface => ({
       ...state,
       isLoading: false,
+      error: action.error
     })
   )
 );

@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs/operators';
 import { getUserProfileSuccessAction } from 'src/app/auth/store/actions/getUserProfile.action';
 import { loginSuccessAction } from 'src/app/auth/store/actions/login.action';
-import { getProductSuccessAction } from 'src/app/product/store/actions/getProduct.action';
+import { getProductFailureAction, getProductSuccessAction } from 'src/app/product/store/actions/getProduct.action';
 import { getProductsSuccessAction } from 'src/app/products/store/actions/getProducts.action';
 
 @Injectable()
@@ -36,6 +36,17 @@ export class AlertEffects {
       this.actions$.pipe(
         ofType(getProductSuccessAction),
         tap(() => this.toastr.success('Product loaded!', '', {
+          timeOut: 1000
+        }))
+      ),
+    { dispatch: false }
+  );
+
+  getProductFailureEffect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(getProductFailureAction),
+        tap(() => this.toastr.error('Fetch product failed!', '', {
           timeOut: 1000
         }))
       ),

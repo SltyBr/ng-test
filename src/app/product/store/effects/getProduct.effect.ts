@@ -19,7 +19,7 @@ export class GetProductEffect {
             });
           }),
           catchError(() => {
-            return of(getProductFailureAction());
+            return of(getProductFailureAction({error: 'Something went wrong'}));
           })
         );
       })

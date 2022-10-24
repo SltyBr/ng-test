@@ -1,11 +1,9 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getProductAction } from 'src/app/product/store/actions/getProduct.action';
-import { productSelector } from 'src/app/product/store/selectors';
-import { NavigateBackService } from 'src/app/shared/services/navigate-back.service';
+import { errorSelector, productSelector } from 'src/app/product/store/selectors';
 import { ProductInterface } from 'src/app/shared/types/product.interface';
 
 // import Swiper core and required modules
@@ -22,8 +20,9 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 })
 export class ProductComponent implements OnInit {
   product$: Observable<ProductInterface | null>;
+  error$: Observable<string | null>;
 
-  constructor(private store: Store, private route: ActivatedRoute, private navigateBackService: NavigateBackService) { }
+  constructor(private store: Store, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.initializeValues();
@@ -39,9 +38,10 @@ export class ProductComponent implements OnInit {
 
   initializeValues(): void {
     this.product$ = this.store.pipe(select(productSelector));
+    this.error$ = this.store.pipe(select(errorSelector));
   }
 
-  navigateBack() {
-    this.navigateBackService.goBack();
+  navigateToProducts() {
+    this.router.navigate(['/products'])
   }
 }

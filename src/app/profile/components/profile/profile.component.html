@@ -1,4 +1,4 @@
-<button mat-button color="primary" (click)="navigateBack()">Go shopping</button>
+<button mat-button color="primary" (click)="navigateToProducts()">Go shopping</button>
 <mat-card class="profile-card" *ngIf="(userProfile$ | async) as userProfile">
   <mat-card-header>
     <mat-card-title>{{userProfile.firstName}} {{userProfile.lastName}}</mat-card-title>

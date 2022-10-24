@@ -1,5 +1,8 @@
+<div *ngIf="error$ | async as error" class="text-danger">
+  {{ error }}
+</div>
 <div *ngIf="product$ | async as product" class="product">
-  <button mat-button color="primary" (click)="navigateBack()">Back to products</button>
+  <button mat-button color="primary" (click)="navigateToProducts()">Back to products</button>
   <div class="product__swiper">
     <swiper
       [slidesPerView]="1"

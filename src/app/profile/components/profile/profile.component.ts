@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { userProfileSelector } from 'src/app/auth/store/selectors';
-import { NavigateBackService } from 'src/app/shared/services/navigate-back.service';
 import { UserProfileInterface } from 'src/app/shared/types/userProfile.interface';
 
 @Component({
@@ -13,7 +13,7 @@ import { UserProfileInterface } from 'src/app/shared/types/userProfile.interface
 export class ProfileComponent implements OnInit {
   userProfile$: Observable<UserProfileInterface | null>
 
-  constructor(private store: Store, private navigateBackService: NavigateBackService) { }
+  constructor(private store: Store, private router: Router) { }
 
   ngOnInit(): void {
     this.initializeValues();
@@ -23,8 +23,8 @@ export class ProfileComponent implements OnInit {
     this.userProfile$ = this.store.pipe(select(userProfileSelector))
   }
 
-  navigateBack(): void {
-    this.navigateBackService.goBack();
+  navigateToProducts(): void {
+    this.router.navigate(['/products']);
   }
 
 }
