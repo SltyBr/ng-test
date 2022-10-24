@@ -21,7 +21,6 @@ export class GetProductsEffect {
       switchMap(({url}) => {
         const token = this.persistanceService.get(localStorageKeys.jwt);
         if (JSON.stringify(token) === '{}') {
-          console.log('case');
           return of(logoutAction());
         }
         return this.productsService.getProducts(url).pipe(

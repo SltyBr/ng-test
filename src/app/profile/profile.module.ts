@@ -6,7 +6,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 
-const routes: Routes = [{ path: 'profile', component: ProfileComponent }];
+const routes: Routes = [
+  { path: 'profile', component: ProfileComponent },
+];
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -15,7 +17,7 @@ const routes: Routes = [{ path: 'profile', component: ProfileComponent }];
     RouterModule.forChild(routes),
     MatCardModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
   ],
 })
 export class ProfileModule {}

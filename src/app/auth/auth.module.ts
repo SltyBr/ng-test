@@ -15,9 +15,10 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { ErrorMessageModule } from 'src/app/shared/modules/error-message/error-message.module';
 import { GetUserProfileEffect } from 'src/app/auth/store/effects/getUserProfile.effect';
 import { LogoutEffect } from 'src/app/auth/store/effects/logout.effect';
+import { LoginAccessGuard } from 'src/app/auth/guards/login-access.guard';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent, canActivate: [LoginAccessGuard]}
 ]
 
 

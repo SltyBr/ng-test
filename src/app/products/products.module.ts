@@ -10,11 +10,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
 
 import { reducers } from 'src/app/products/store/reducers';
-import { ProductsAccessGuard } from 'src/app/auth/guards/products-access.guard';
 import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
 
 const routes: Routes = [
-  { path: 'products', component: ProductsComponent, canActivate: [ProductsAccessGuard] },
+  { path: 'products', component: ProductsComponent },
   { path: '', redirectTo: '/products', pathMatch: 'full' }
 ];
 
