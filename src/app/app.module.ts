@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +16,8 @@ import { AuthInterceptor } from 'src/app/shared/services/authinterceptor.interce
 import { ProductsModule } from 'src/app/products/products.module';
 import { AlertEffects } from 'src/app/shared/store/effects/alert-center.effects';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SpinnerEffects } from 'src/app/shared/store/effects/spinner.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,9 +30,10 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([AlertEffects]),
+    EffectsModule.forRoot([AlertEffects, SpinnerEffects]),
     ToolbarModule,
     ProductsModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot()
   ],
   providers: [{
@@ -38,6 +41,7 @@ import { ToastrModule } from 'ngx-toastr';
     useClass: AuthInterceptor,
     multi: true
   }],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
