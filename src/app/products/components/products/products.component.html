@@ -16,8 +16,8 @@
           <div class="product__price">Price: <strong>{{product.price}}&#36;</strong></div>
         </div>
         <div class="product__buttons d-flex justify-content-evenly">
-          <button mat-button color="primary">Quick view</button>
-          <a mat-raised-button color="primary">Details</a>
+          <div class="product__stock">Stock: <strong>{{product.stock}}</strong></div>
+          <a mat-raised-button color="primary" [routerLink]="['/products', product.id]">Details</a>
         </div>
       </div>
     </mat-grid-tile>
