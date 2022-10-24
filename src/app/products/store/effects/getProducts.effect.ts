@@ -11,6 +11,7 @@ import { ProductsService } from 'src/app/products/services/products.service';
 import { ProductsResponseInterface } from 'src/app/products/types/productsResponse.interface';
 import { PersistanceService } from 'src/app/shared/services/persistance.service';
 import { localStorageKeys } from 'src/environments/localStorageKeys';
+import { logoutAction } from 'src/app/auth/store/actions/logout.action';
 
 @Injectable()
 export class GetProductsEffect {
@@ -20,7 +21,8 @@ export class GetProductsEffect {
       switchMap(({url}) => {
         const token = this.persistanceService.get(localStorageKeys.jwt);
         if (JSON.stringify(token) === '{}') {
-          return of(getProductsFailureAction());
+          console.log('case');
+          return of(logoutAction());
         }
         return this.productsService.getProducts(url).pipe(
           map((response: ProductsResponseInterface) => {

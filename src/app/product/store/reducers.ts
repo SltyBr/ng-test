@@ -8,7 +8,6 @@ import {
 import { ProductStateInterface } from 'src/app/product/types/productState.interface';
 
 const initialState: ProductStateInterface = {
-  isLoading: false,
   error: null,
   data: null,
 };
@@ -16,17 +15,9 @@ const initialState: ProductStateInterface = {
 const productReducer = createReducer(
   initialState,
   on(
-    getProductAction,
-    (state): ProductStateInterface => ({
-      ...state,
-      isLoading: true,
-    })
-  ),
-  on(
     getProductSuccessAction,
     (state, action): ProductStateInterface => ({
       ...state,
-      isLoading: false,
       data: action.product,
     })
   ),
@@ -34,7 +25,6 @@ const productReducer = createReducer(
     getProductFailureAction,
     (state, action): ProductStateInterface => ({
       ...state,
-      isLoading: false,
       error: action.error
     })
   )

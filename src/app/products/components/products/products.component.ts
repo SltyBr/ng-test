@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { getProductsAction } from 'src/app/products/store/actions/getProducts.action';
 import {
   errorSelector,
-  isLoadingSelector,
   productsSelector,
 } from 'src/app/products/store/selectors';
 import { ProductsResponseInterface } from 'src/app/products/types/productsResponse.interface';
@@ -18,7 +17,6 @@ import { productsRoute } from 'src/environments/apiRoutesConfig';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements OnInit {
-  isLoading$: Observable<boolean>;
   error$: Observable<string | null>;
   products$: Observable<ProductsResponseInterface | null>;
   limit = 30;
@@ -33,7 +31,6 @@ export class ProductsComponent implements OnInit {
   }
 
   initializeValues(): void {
-    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.error$ = this.store.pipe(select(errorSelector));
     this.products$ = this.store.pipe(select(productsSelector));
     this.baseUrl = this.router.url.split('?')[0];

@@ -1,23 +1,40 @@
-<div *ngIf="(products$ | async) as productsData">
-  <!-- <ng-pagination [total]="productsData.total" [limit]="limit" [url]="baseUrl" [currentPage]="currentPage"></ng-pagination> -->
-  <ng-pagination [total]="productsData.total" [url]="baseUrl" [currentPage]="currentPage"></ng-pagination>
+<div *ngIf="products$ | async as productsData">
+  <ng-pagination
+    [total]="productsData.total"
+    [url]="baseUrl"
+    [currentPage]="currentPage"
+  ></ng-pagination>
   <mat-grid-list cols="3" gutterSize="15px">
-    <mat-grid-tile *ngFor="let product of productsData.products" class="shadow bg-white rounded">
+    <mat-grid-tile
+      *ngFor="let product of productsData.products"
+      class="shadow bg-white rounded"
+    >
       <div class="product p-2">
         <div class="product__header d-flex justify-content-between">
-          <div class="product__title">{{product.title}}</div>
-          <div class="product__category">{{product.category}}</div>
+          <div class="product__title">{{ product.title }}</div>
+          <div class="product__category">{{ product.category }}</div>
         </div>
         <div class="product__image mb-2">
-          <img [src]="product.thumbnail" [alt]="product.title" loading="lazy">
+          <img [src]="product.thumbnail" [alt]="product.title" loading="lazy" />
         </div>
         <div class="product__digits d-flex justify-content-evenly mb-2">
-          <div class="product__rating">Rating: <strong>{{product.rating}}&#10026;</strong></div>
-          <div class="product__price">Price: <strong>{{product.price}}&#36;</strong></div>
+          <div class="product__rating">
+            Rating: <strong>{{ product.rating }}&#10026;</strong>
+          </div>
+          <div class="product__price">
+            Price: <strong>{{ product.price }}&#36;</strong>
+          </div>
         </div>
         <div class="product__buttons d-flex justify-content-evenly">
-          <div class="product__stock">Stock: <strong>{{product.stock}}</strong></div>
-          <a mat-raised-button color="primary" [routerLink]="['/products', product.id]">Details</a>
+          <div class="product__stock">
+            Stock: <strong>{{ product.stock }}</strong>
+          </div>
+          <a
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/products', product.id]"
+            >Details</a
+          >
         </div>
       </div>
     </mat-grid-tile>

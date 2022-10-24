@@ -12,6 +12,7 @@ import {
   loginFailureAction,
   loginSuccessAction,
 } from 'src/app/auth/store/actions/login.action';
+import { logoutAction } from 'src/app/auth/store/actions/logout.action';
 import {
   getProductAction,
   getProductFailureAction,
@@ -19,6 +20,7 @@ import {
 } from 'src/app/product/store/actions/getProduct.action';
 import {
   getProductsAction,
+  getProductsFailureAction,
   getProductsSuccessAction,
 } from 'src/app/products/store/actions/getProducts.action';
 
@@ -42,10 +44,12 @@ export class SpinnerEffects {
     () =>
       this.actions$.pipe(
         ofType(
+          logoutAction,
           loginSuccessAction,
           loginFailureAction,
           getUserProfileSuccessAction,
           getUserProfileFailureAction,
+          getProductsFailureAction,
           getProductsSuccessAction,
           getProductSuccessAction,
           getProductFailureAction

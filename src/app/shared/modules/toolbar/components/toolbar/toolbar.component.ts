@@ -1,7 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { isLoggedInSelector, userProfileSelector } from 'src/app/auth/store/selectors';
+import {
+  isAnonymousSelector,
+  isLoggedInSelector,
+  userProfileSelector,
+} from 'src/app/auth/store/selectors';
 import { UserProfileInterface } from 'src/app/shared/types/userProfile.interface';
 import { environment } from 'src/environments/environment';
 
@@ -9,13 +13,15 @@ import { environment } from 'src/environments/environment';
   selector: 'ng-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarComponent implements OnInit {
-  projectName = environment.projectName
+  projectName = environment.projectName;
   isLoggedIn$: Observable<boolean | null>;
+  isAnonymous$: Observable<boolean | null>;
   userProfile$: Observable<UserProfileInterface | null>;
-  constructor(private store: Store) { }
+
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.initializeValues();
@@ -24,6 +30,6 @@ export class ToolbarComponent implements OnInit {
   initializeValues(): void {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector));
     this.userProfile$ = this.store.pipe(select(userProfileSelector));
+    this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector));
   }
-
 }

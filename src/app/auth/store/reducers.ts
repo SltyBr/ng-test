@@ -6,7 +6,6 @@ import { AuthStateInterface } from 'src/app/auth/types/authState.interface';
 
 const initialState: AuthStateInterface = {
   isSubmitting: false,
-  isLoading: false,
   userProfile: null,
   isLoggedIn: null,
   error: null
@@ -40,17 +39,9 @@ const authReducer = createReducer(
     })
   ),
   on(
-    getUserProfileAction,
-    (state): AuthStateInterface => ({
-      ...state,
-      isLoading: true
-    })
-  ),
-  on(
     getUserProfileSuccessAction,
     (state, action): AuthStateInterface => ({
       ...state,
-      isLoading: false,
       isLoggedIn: true,
       userProfile: action.userProfile
     })
@@ -59,14 +50,17 @@ const authReducer = createReducer(
     getUserProfileFailureAction,
     (state): AuthStateInterface => ({
       ...state,
-      isLoading: false,
       isLoggedIn: false,
       userProfile: null
     })
   ),
   on(
     logoutAction,
-    (state): AuthStateInterface => initialState
+    (state): AuthStateInterface => ({
+      ...state,
+      isLoggedIn: false,
+      userProfile: null
+    })
   )
 );
 

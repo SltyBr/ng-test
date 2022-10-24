@@ -2,18 +2,37 @@
   <div class="container d-flex justify-content-between">
     <span class="toolbar__project-name fs-2">{{ projectName }}</span>
     <div>
-      <a href="mailto:saltybrain@yandex.ru" class="toolbar_link fs-6 contacts-link" style="margin-right: 10px">SaltyBrain@yandex.ru</a>
-      <a href="https://telegram.im/@SltyBr" class="toolbar_link fs-6 contacts-link">Telegram</a>
+      <a
+        href="mailto:saltybrain@yandex.ru"
+        class="toolbar_link fs-6 contacts-link"
+        style="margin-right: 10px"
+        >SaltyBrain@yandex.ru</a
+      >
+      <a
+        href="https://telegram.im/@SltyBr"
+        class="toolbar_link fs-6 contacts-link"
+        >Telegram</a
+      >
     </div>
     <div class="toolbar__right-block">
-      <a
-        mat-button
-        class="toolbar_link fs-5"
-        [routerLink]="['/products']"
-        routerLinkActive="active"
-        >Products</a
-      >
-      <ng-template #signIn>
+      <ng-container *ngIf="isLoggedIn$ | async as isLoggedIn">
+        <a
+          mat-button
+          class="toolbar_link fs-5"
+          [routerLink]="['/products']"
+          routerLinkActive="active"
+          >Products</a
+        >
+        <a
+          mat-button
+          class="toolbar_link fs-5"
+          [routerLink]="['/profile']"
+          routerLinkActive="active"
+          >Profile</a
+        >
+      </ng-container>
+
+      <ng-container *ngIf="isAnonymous$ | async as isAnonymous">
         <a
           mat-button
           class="toolbar_link fs-5"
@@ -21,15 +40,7 @@
           routerLinkActive="active"
           >Sing in</a
         >
-      </ng-template>
-      <a
-        mat-button
-        *ngIf="isLoggedIn$ | async as isLoggedIn; else signIn"
-        class="toolbar_link fs-5"
-        [routerLink]="['/profile']"
-        routerLinkActive="active"
-        >Profile</a
-      >
+      </ng-container>
     </div>
   </div>
 </mat-toolbar>
