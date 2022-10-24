@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import {
   getUserProfileAction,
   getUserProfileFailureAction,
+  getUserProfileSuccessAction,
 } from 'src/app/auth/store/actions/getUserProfile.action';
 import {
   loginAction,
@@ -43,7 +44,7 @@ export class SpinnerEffects {
         ofType(
           loginSuccessAction,
           loginFailureAction,
-          getProductsSuccessAction,
+          getUserProfileSuccessAction,
           getUserProfileFailureAction,
           getProductsSuccessAction,
           getProductSuccessAction,

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs/operators';
+import { getUserProfileSuccessAction } from 'src/app/auth/store/actions/getUserProfile.action';
 import { loginSuccessAction } from 'src/app/auth/store/actions/login.action';
 import { getProductSuccessAction } from 'src/app/product/store/actions/getProduct.action';
 import { getProductsSuccessAction } from 'src/app/products/store/actions/getProducts.action';
@@ -35,6 +36,17 @@ export class AlertEffects {
       this.actions$.pipe(
         ofType(getProductSuccessAction),
         tap(() => this.toastr.success('Product loaded!', '', {
+          timeOut: 1000
+        }))
+      ),
+    { dispatch: false }
+  );
+
+  getUserSuccessEffect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(getUserProfileSuccessAction),
+        tap(() => this.toastr.success('Profile loaded!', '', {
           timeOut: 1000
         }))
       ),
