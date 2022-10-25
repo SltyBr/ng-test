@@ -7,17 +7,16 @@
   <mat-grid-list cols="3" gutterSize="15px">
     <mat-grid-tile
       *ngFor="let product of productsData.products"
-      class="shadow bg-white rounded"
     >
-      <div class="product p-2">
-        <div class="product__header d-flex justify-content-between">
+      <div class="product">
+        <div class="product__header">
           <div class="product__title">{{ product.title }}</div>
           <div class="product__category">{{ product.category }}</div>
         </div>
-        <div class="product__image mb-2">
+        <div class="product__image">
           <img [src]="product.thumbnail" [alt]="product.title" loading="lazy" />
         </div>
-        <div class="product__digits d-flex justify-content-evenly mb-2">
+        <div class="product__digits">
           <div class="product__rating">
             Rating: <strong>{{ product.rating }}&#10026;</strong>
           </div>
@@ -25,7 +24,7 @@
             Price: <strong>{{ product.price }}&#36;</strong>
           </div>
         </div>
-        <div class="product__buttons d-flex justify-content-evenly">
+        <div class="product__buttons">
           <div class="product__stock">
             Stock: <strong>{{ product.stock }}</strong>
           </div>

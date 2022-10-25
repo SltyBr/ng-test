@@ -3,4 +3,15 @@
   max-width: 500px;
   width: 100%;
   margin: auto;
+  &__header {
+    text-align: center;
+  }
+  &__form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  &__form-field {
+    width: 100%;
+  }
 }

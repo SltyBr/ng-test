@@ -1,7 +1,7 @@
 <div class="login">
-  <h2 class="login__header text-center fs-2">Sing in</h2>
+  <h1 class="login__header">Sing in</h1>
   <form
-    class="login__form row justify-content-center"
+    class="login__form"
     [formGroup]="form"
     (ngSubmit)="onSubmit()"
   >
@@ -9,7 +9,7 @@
       *ngIf="error$ | async as validationError"
       [error]="validationError"
     ></ng-error-message>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="login__form-field">
       <mat-label>Enter your login</mat-label>
       <input
         matInput
@@ -20,7 +20,7 @@
       <mat-error *ngIf="username?.invalid">username is required</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="login">
       <mat-label>Enter your password</mat-label>
       <input
         matInput
@@ -42,7 +42,6 @@
     <button
       mat-raised-button
       color="primary"
-      class="col-3"
       [disabled]="isSubmitting$ | async"
     >
       Submit

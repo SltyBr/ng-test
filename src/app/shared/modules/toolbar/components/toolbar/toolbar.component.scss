@@ -1,4 +1,22 @@
+.toolbar {
+  &__project-name {
+    font-size: 28px;
+  }
+}
+
+.mat-toolbar {
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.container-1 {
+  flex-basis: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .toolbar_link {
+  font-size: 18px;
   &:hover {
     color: rgb(255, 0, 149)
   }

@@ -1,16 +1,16 @@
-<mat-toolbar color="primary" class="toolbar mb-5">
-  <div class="container d-flex justify-content-between">
-    <span class="toolbar__project-name fs-2">{{ projectName }}</span>
+<mat-toolbar color="primary" class="toolbar">
+  <div class="container-1">
+    <span class="toolbar__project-name">{{ projectName }}</span>
     <div>
       <a
         href="mailto:saltybrain@yandex.ru"
-        class="toolbar_link fs-6 contacts-link"
+        class="toolbar_link contacts-link"
         style="margin-right: 10px"
         >SaltyBrain@yandex.ru</a
       >
       <a
         href="https://telegram.im/@SltyBr"
-        class="toolbar_link fs-6 contacts-link"
+        class="toolbar_link contacts-link"
         >Telegram</a
       >
     </div>
@@ -18,14 +18,14 @@
       <ng-container *ngIf="isLoggedIn$ | async as isLoggedIn">
         <a
           mat-button
-          class="toolbar_link fs-5"
+          class="toolbar_link"
           [routerLink]="['/products']"
           routerLinkActive="active"
           >Products</a
         >
         <a
           mat-button
-          class="toolbar_link fs-5"
+          class="toolbar_link"
           [routerLink]="['/profile']"
           routerLinkActive="active"
           >Profile</a
@@ -35,7 +35,7 @@
       <ng-container *ngIf="isAnonymous$ | async as isAnonymous">
         <a
           mat-button
-          class="toolbar_link fs-5"
+          class="toolbar_link"
           [routerLink]="['/login']"
           routerLinkActive="active"
           >Sing in</a
