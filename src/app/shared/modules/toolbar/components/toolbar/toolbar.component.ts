@@ -34,9 +34,6 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeValues();
-    this.productsCart$.subscribe((products) => {
-      console.log(products);
-    })
   }
 
   initializeValues(): void {
