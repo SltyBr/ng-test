@@ -1,6 +1,10 @@
 <mat-toolbar color="primary" class="toolbar">
   <div class="container-1">
-    <span class="toolbar__project-name">{{ projectName }}</span>
+    <span
+      class="toolbar__project-name"
+      [routerLink]="[authHelper.setLogoRoutePath(isLoggedIn$ | async)]"
+      >{{ projectName }}</span
+    >
     <div>
       <a
         href="mailto:saltybrain@yandex.ru"
@@ -8,9 +12,7 @@
         style="margin-right: 10px"
         >SaltyBrain@yandex.ru</a
       >
-      <a
-        href="https://telegram.im/@SltyBr"
-        class="toolbar_link contacts-link"
+      <a href="https://telegram.im/@SltyBr" class="toolbar_link contacts-link"
         >Telegram</a
       >
     </div>

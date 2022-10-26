@@ -1,11 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy,
+} from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {
   isAnonymousSelector,
   isLoggedInSelector,
   userProfileSelector,
 } from 'src/app/auth/store/selectors';
+import { AuthStateInterface } from 'src/app/auth/types/authState.interface';
+import { AuthHelperService } from 'src/app/shared/services/authHelper.service';
 import { UserProfileInterface } from 'src/app/shared/types/userProfile.interface';
 import { environment } from 'src/environments/environment';
 
@@ -14,6 +22,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [AuthHelperService]
 })
 export class ToolbarComponent implements OnInit {
   projectName = environment.projectName;
@@ -21,7 +30,7 @@ export class ToolbarComponent implements OnInit {
   isAnonymous$: Observable<boolean | null>;
   userProfile$: Observable<UserProfileInterface | null>;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, public authHelper: AuthHelperService) {}
 
   ngOnInit(): void {
     this.initializeValues();
