@@ -37,7 +37,14 @@
           class="toolbar_link"
           [routerLink]="['/cart']"
           routerLinkActive="active"
-          ><mat-icon>shopping_cart</mat-icon>Cart</a
+          ><div
+            *ngIf="(productsCart$ | async) as productsCart"
+            [matBadge]="productsCart.length"
+            matBadgeOverlap="false"
+            class="demo-section"
+          >
+            <mat-icon>shopping_cart</mat-icon>Cart
+          </div></a
         >
       </ng-container>
 

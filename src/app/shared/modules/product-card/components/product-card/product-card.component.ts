@@ -1,15 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductInterface } from 'src/app/shared/types/product.interface';
 
 @Component({
   selector: 'ng-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
+  styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent implements OnInit {
-  @Input('product') productProps: ProductInterface
+  @Input('product') productProps: ProductInterface;
+  @Output() addProductToCart = new EventEmitter<ProductInterface>();
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  handleAddToCart(product: ProductInterface) {
+    this.addProductToCart.emit(product)
   }
-
 }

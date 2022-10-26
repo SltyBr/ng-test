@@ -1,7 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import {
-  getProductAction,
   getProductFailureAction,
   getProductSuccessAction,
 } from 'src/app/product/store/actions/getProduct.action';

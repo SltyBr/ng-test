@@ -2,12 +2,14 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { addToCartAction } from 'src/app/cart/store/actions/cart.action';
 import { getProductsAction } from 'src/app/products/store/actions/getProducts.action';
 import {
   errorSelector,
   productsSelector,
 } from 'src/app/products/store/selectors';
 import { ProductsResponseInterface } from 'src/app/products/types/productsResponse.interface';
+import { ProductInterface } from 'src/app/shared/types/product.interface';
 import { productsRoute } from 'src/environments/apiRoutesConfig';
 
 @Component({
@@ -47,5 +49,9 @@ export class ProductsComponent implements OnInit {
     const skip = this.currentPage * this.limit - this.limit;
     const urlWithQuery = `${productsRoute}?skip=${skip}`
     this.store.dispatch(getProductsAction({url: urlWithQuery}));
+  }
+
+  addProductToCart(product: ProductInterface): void {
+    this.store.dispatch(addToCartAction({product: product}))
   }
 }

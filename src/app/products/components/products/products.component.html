@@ -8,7 +8,7 @@
     <mat-grid-tile
       *ngFor="let product of productsData.products"
     >
-    <ng-product-card [product]="product"></ng-product-card>
+    <ng-product-card [product]="product" (addProductToCart)="addProductToCart(product)"></ng-product-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

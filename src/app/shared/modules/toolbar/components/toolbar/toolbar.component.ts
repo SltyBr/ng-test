@@ -2,18 +2,17 @@ import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
-  OnDestroy,
 } from '@angular/core';
-import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import {
   isAnonymousSelector,
   isLoggedInSelector,
   userProfileSelector,
 } from 'src/app/auth/store/selectors';
-import { AuthStateInterface } from 'src/app/auth/types/authState.interface';
+import { productsCartSelector } from 'src/app/cart/store/selectors';
 import { AuthHelperService } from 'src/app/shared/services/authHelper.service';
+import { ProductInterface } from 'src/app/shared/types/product.interface';
 import { UserProfileInterface } from 'src/app/shared/types/userProfile.interface';
 import { environment } from 'src/environments/environment';
 
@@ -29,16 +28,21 @@ export class ToolbarComponent implements OnInit {
   isLoggedIn$: Observable<boolean | null>;
   isAnonymous$: Observable<boolean | null>;
   userProfile$: Observable<UserProfileInterface | null>;
+  productsCart$: Observable<ProductInterface[] | null>
 
   constructor(private store: Store, public authHelper: AuthHelperService) {}
 
   ngOnInit(): void {
     this.initializeValues();
+    this.productsCart$.subscribe((products) => {
+      console.log(products);
+    })
   }
 
   initializeValues(): void {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector));
     this.userProfile$ = this.store.pipe(select(userProfileSelector));
     this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector));
+    this.productsCart$ = this.store.pipe(select(productsCartSelector));
   }
 }

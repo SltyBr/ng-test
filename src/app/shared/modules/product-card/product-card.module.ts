@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -13,7 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     RouterModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   exports: [ProductCardComponent]
 })
