@@ -21,6 +21,7 @@ import { SpinnerEffects } from 'src/app/shared/store/effects/spinner.effects';
 import { ProductModule } from 'src/app/product/product.module';
 import { ProfileModule } from 'src/app/profile/profile.module';
 import { NotFoundModule } from 'src/app/not-found/not-found.module';
+import { CartModule } from 'src/app/cart/cart.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,7 +41,8 @@ import { NotFoundModule } from 'src/app/not-found/not-found.module';
     ToastrModule.forRoot(),
     ProductModule,
     ProfileModule,
-    NotFoundModule
+    CartModule,
+    NotFoundModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

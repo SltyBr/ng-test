@@ -32,6 +32,13 @@
           routerLinkActive="active"
           >Profile</a
         >
+        <a
+          mat-button
+          class="toolbar_link"
+          [routerLink]="['/cart']"
+          routerLinkActive="active"
+          ><mat-icon>shopping_cart</mat-icon>Cart</a
+        >
       </ng-container>
 
       <ng-container *ngIf="isAnonymous$ | async as isAnonymous">
