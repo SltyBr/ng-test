@@ -8,34 +8,7 @@
     <mat-grid-tile
       *ngFor="let product of productsData.products"
     >
-      <div class="product">
-        <div class="product__header">
-          <div class="product__title">{{ product.title }}</div>
-          <div class="product__category">{{ product.category }}</div>
-        </div>
-        <div class="product__image">
-          <img [src]="product.thumbnail" [alt]="product.title" loading="lazy" />
-        </div>
-        <div class="product__digits">
-          <div class="product__rating">
-            Rating: <strong>{{ product.rating }}&#10026;</strong>
-          </div>
-          <div class="product__price">
-            Price: <strong>{{ product.price }}&#36;</strong>
-          </div>
-        </div>
-        <div class="product__buttons">
-          <div class="product__stock">
-            Stock: <strong>{{ product.stock }}</strong>
-          </div>
-          <a
-            mat-raised-button
-            color="primary"
-            [routerLink]="['/products', product.id]"
-            >Details</a
-          >
-        </div>
-      </div>
+    <ng-product-card [product]="product"></ng-product-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

@@ -11,6 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { reducers } from 'src/app/products/store/reducers';
 import { PaginationModule } from 'src/app/shared/modules/pagination/pagination.module';
+import { ProductCardModule } from 'src/app/shared/modules/product-card/product-card.module';
 
 const routes: Routes = [
   { path: 'products', component: ProductsComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
     StoreModule.forFeature('products', reducers),
     MatGridListModule,
     MatButtonModule,
-    PaginationModule
+    PaginationModule,
+    ProductCardModule
   ],
   providers: [ProductsService],
 })

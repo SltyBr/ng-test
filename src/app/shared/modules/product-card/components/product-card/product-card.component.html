@@ -1,0 +1,28 @@
+<div class="product">
+  <div class="product__header">
+    <div class="product__title">{{ productProps.title }}</div>
+    <div class="product__category">{{ productProps.category }}</div>
+  </div>
+  <div class="product__image">
+    <img [src]="productProps.thumbnail" [alt]="productProps.title" loading="lazy" />
+  </div>
+  <div class="product__digits">
+    <div class="product__rating">
+      Rating: <strong>{{ productProps.rating }}&#10026;</strong>
+    </div>
+    <div class="product__price">
+      Price: <strong>{{ productProps.price }}&#36;</strong>
+    </div>
+  </div>
+  <div class="product__buttons">
+    <div class="product__stock">
+      Stock: <strong>{{ productProps.stock }}</strong>
+    </div>
+    <a
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/products', productProps.id]"
+      >Details</a
+    >
+  </div>
+</div>
