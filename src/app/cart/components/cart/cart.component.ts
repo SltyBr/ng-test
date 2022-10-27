@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { deleteFromCartAction } from 'src/app/cart/store/actions/cart.action';
@@ -8,7 +8,8 @@ import { cartMapped } from 'src/app/cart/types/cart.interface';
 @Component({
   selector: 'ng-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CartComponent implements OnInit {
   totalPrice$: Observable<number>;
