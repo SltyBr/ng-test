@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 import { getUserProfileSuccessAction } from 'src/app/auth/store/actions/getUserProfile.action';
 import { loginSuccessAction } from 'src/app/auth/store/actions/login.action';
 import { logoutAction } from 'src/app/auth/store/actions/logout.action';
-import { addToCartAction } from 'src/app/cart/store/actions/cart.action';
+import { addToCartAction, deleteFromCartAction } from 'src/app/cart/store/actions/cart.action';
 import { getProductFailureAction, getProductSuccessAction } from 'src/app/product/store/actions/getProduct.action';
 import { getProductsSuccessAction } from 'src/app/products/store/actions/getProducts.action';
 
@@ -82,6 +82,17 @@ export class AlertEffects {
       this.actions$.pipe(
         ofType(addToCartAction),
         tap(() => this.toastr.success('Product successfully added to cart!', '', {
+          timeOut: 1000
+        }))
+      ),
+    { dispatch: false }
+  );
+
+  deleteFromCartEffect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(deleteFromCartAction),
+        tap(() => this.toastr.success('Product successfully deleted!', '', {
           timeOut: 1000
         }))
       ),

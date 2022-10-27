@@ -19,8 +19,11 @@ const cartReducer = createReducer(
     })
   ),
   on(deleteFromCartAction, (state, action): CartStateInterface => {
+    const productIndex = state.products.findIndex(
+      (prod) => prod.id === action.productId
+    );
     const filteredProducts = state.products.filter(
-      (product) => product.id !== action.productId
+      (prod, index) => index !== productIndex
     );
     return {
       products: filteredProducts,
