@@ -15,14 +15,12 @@ import { UserProfileInterface } from 'src/app/shared/types/userProfile.interface
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   userProfile$: Observable<UserProfileInterface | null>
-  userProfile: UserProfileInterface | null;
   userProfileSubscription: Subscription;
 
   constructor(private store: Store, private router: Router) { }
 
   ngOnInit(): void {
     this.initializeValues();
-    this.initializeSubscription();
   }
 
   ngOnDestroy(): void {
@@ -33,21 +31,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.userProfile$ = this.store.pipe(select(userProfileSelector))
   }
 
-  initializeSubscription(): void {
-    this.userProfileSubscription = this.userProfile$.subscribe((userProfile) => {
-      const birthDate = userProfile?.birthDate;
-      if (!birthDate) {
-        this.store.dispatch(getUserProfileAction())
-      }
-      this.userProfile = userProfile;
-    })
-  }
-
   navigateToProducts(): void {
     this.router.navigate(['/products']);
   }
 
-  logout() {
+  logout(): void {
     this.store.dispatch(logoutAction())
   }
 
