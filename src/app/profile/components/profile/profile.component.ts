@@ -13,7 +13,7 @@ import { UserProfileInterface } from 'src/app/shared/types/userProfile.interface
   styleUrls: ['./profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit {
   userProfile$: Observable<UserProfileInterface | null>
   userProfileSubscription: Subscription;
 
@@ -21,10 +21,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeValues();
-  }
-
-  ngOnDestroy(): void {
-    this.userProfileSubscription.unsubscribe();
   }
 
   initializeValues() {
