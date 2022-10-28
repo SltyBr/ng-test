@@ -9,5 +9,7 @@ export enum ActionTypes {
 
   GET_USER_PROFILE = '[Auth] Get user profile',
   GET_USER_PROFILE_SUCCESS = '[Auth] Get user profile success',
-  GET_USER_PROFILE_FAILURE = '[Auth] Get user profile failure'
+  GET_USER_PROFILE_FAILURE = '[Auth] Get user profile failure',
+
+  GET_USER_PROFILE_TOKEN_EXPIRED = '[Auth] Get user profile token expired',
 }

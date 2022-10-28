@@ -13,3 +13,7 @@ export const getUserProfileSuccessAction = createAction(
 export const getUserProfileFailureAction = createAction(
   ActionTypes.GET_USER_PROFILE_FAILURE
 );
+
+export const getUserProfileTokenExpiredAction = createAction(
+  ActionTypes.GET_USER_PROFILE_TOKEN_EXPIRED
+);

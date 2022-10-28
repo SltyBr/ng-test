@@ -9,9 +9,7 @@ import {
 } from 'src/app/products/store/actions/getProducts.action';
 import { ProductsService } from 'src/app/products/services/products.service';
 import { ProductsResponseInterface } from 'src/app/products/types/productsResponse.interface';
-import { PersistanceService } from 'src/app/shared/services/persistance.service';
-import { localStorageKeys } from 'src/environments/localStorageKeys';
-import { logoutAction } from 'src/app/auth/store/actions/logout.action';
+import { getUserProfileTokenExpiredAction } from 'src/app/auth/store/actions/getUserProfile.action';
 
 @Injectable()
 export class GetProductsEffect {
@@ -19,17 +17,16 @@ export class GetProductsEffect {
     return this.actions$.pipe(
       ofType(getProductsAction),
       switchMap(({url}) => {
-        const token = this.persistanceService.get(localStorageKeys.jwt);
-        if (JSON.stringify(token) === '{}') {
-          return of(logoutAction());
-        }
         return this.productsService.getProducts(url).pipe(
           map((response: ProductsResponseInterface) => {
             return getProductsSuccessAction({
               products: response,
             });
           }),
-          catchError(() => {
+          catchError((e) => {
+            if (e.name === "TokenExpiredError") {
+              return of(getUserProfileTokenExpiredAction())
+            }
             return of(getProductsFailureAction());
           })
         );
@@ -39,7 +36,6 @@ export class GetProductsEffect {
 
   constructor(
     public actions$: Actions,
-    private productsService: ProductsService,
-    private persistanceService: PersistanceService
+    private productsService: ProductsService
   ) {}
 }

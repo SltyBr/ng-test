@@ -9,6 +9,7 @@ import {
   getUserProfileAction,
   getUserProfileFailureAction,
   getUserProfileSuccessAction,
+  getUserProfileTokenExpiredAction,
 } from 'src/app/auth/store/actions/getUserProfile.action';
 import { localStorageKeys } from 'src/environments/localStorageKeys';
 import { Router } from '@angular/router';
@@ -29,9 +30,10 @@ export class GetUserProfileEffect {
               userProfile: response,
             });
           }),
-          catchError(() => {
-            this.persistanceService.remove(localStorageKeys.jwt);
-            this.persistanceService.remove(localStorageKeys.userId);
+          catchError((e) => {
+            if (e.name === "TokenExpiredError") {
+              return of(getUserProfileTokenExpiredAction())
+            }
             return of(getUserProfileFailureAction());
           })
         );
@@ -42,8 +44,12 @@ export class GetUserProfileEffect {
   redirectOnTokenExpiredEffect$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(getUserProfileFailureAction),
-        tap(() => this.router.navigateByUrl('/login'))
+        ofType(getUserProfileTokenExpiredAction),
+        tap(() => {
+          this.persistanceService.remove(localStorageKeys.jwt);
+          this.persistanceService.remove(localStorageKeys.userId);
+          this.router.navigateByUrl('/login')
+        })
       ),
     { dispatch: false }
   );
