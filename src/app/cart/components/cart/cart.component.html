@@ -11,7 +11,7 @@
       }}&#36;</span
     >
     <span>&nbsp;Quantity - {{ cartItem.value.length - 1 }}</span>
-    <button (click)="deleteFromCart(+cartItem.key)">delete from cart</button>
+    <button mat-raised-button color="primary" (click)="deleteFromCart(+cartItem.key)">delete from cart</button>
   </mat-list-item>
 </mat-list>
 <div *ngIf="totalPrice$ | async as totalPrice">Total Price: {{totalPrice}}</div>

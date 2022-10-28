@@ -6,6 +6,7 @@ import {
   getUserProfileAction,
   getUserProfileFailureAction,
   getUserProfileSuccessAction,
+  getUserProfileTokenExpiredAction,
 } from 'src/app/auth/store/actions/getUserProfile.action';
 import {
   loginAction,
@@ -52,7 +53,8 @@ export class SpinnerEffects {
           getProductsFailureAction,
           getProductsSuccessAction,
           getProductSuccessAction,
-          getProductFailureAction
+          getProductFailureAction,
+          getUserProfileTokenExpiredAction
         ),
         tap(() => {
           this.spinner.hide();

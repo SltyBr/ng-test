@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { getUserProfileAction, getUserProfileFailureAction, getUserProfileSuccessAction } from 'src/app/auth/store/actions/getUserProfile.action';
+import { getUserProfileAction, getUserProfileFailureAction, getUserProfileSuccessAction, getUserProfileTokenExpiredAction } from 'src/app/auth/store/actions/getUserProfile.action';
 import { loginAction, loginFailureAction, loginSuccessAction } from 'src/app/auth/store/actions/login.action';
 import { logoutAction } from 'src/app/auth/store/actions/logout.action';
 import { AuthStateInterface } from 'src/app/auth/types/authState.interface';
@@ -56,12 +56,13 @@ const authReducer = createReducer(
   ),
   on(
     logoutAction,
+    getUserProfileTokenExpiredAction,
     (state): AuthStateInterface => ({
       ...state,
       isLoggedIn: false,
       userProfile: null
     })
-  )
+  ),
 );
 
 export function reducers(state: AuthStateInterface, action: Action) {
