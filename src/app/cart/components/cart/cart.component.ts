@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
+import { getUserProfileAction } from 'src/app/auth/store/actions/getUserProfile.action';
 import { deleteFromCartAction } from 'src/app/cart/store/actions/cart.action';
-import { productsCartSelector } from 'src/app/cart/store/selectors';
+import { emptyCartSelector, productsCartSelector } from 'src/app/cart/store/selectors';
 import { cartMapped } from 'src/app/cart/types/cart.interface';
 
 @Component({
@@ -14,16 +15,23 @@ import { cartMapped } from 'src/app/cart/types/cart.interface';
 export class CartComponent implements OnInit {
   totalPrice$: Observable<number>;
   cartMapped$: Observable<cartMapped>;
+  isEmptyCart$: Observable<boolean>;
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.mappingCartObjectListener();
-    this.calculateTotalPriceListener();
+    this.store.dispatch(getUserProfileAction())
+    this.initializeValues();
   }
 
   deleteFromCart(productId: number) {
     this.store.dispatch(deleteFromCartAction({productId: productId}))
+  }
+
+  initializeValues(): void {
+    this.isEmptyCart$ = this.store.pipe(select(emptyCartSelector))
+    this.mappingCartObjectListener();
+    this.calculateTotalPriceListener();
   }
 
   mappingCartObjectListener(): void {

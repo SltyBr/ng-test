@@ -1,3 +1,6 @@
+<div *ngIf="isEmptyCart$ | async">
+  Empty cart
+</div>
 <mat-list role="list" *ngIf="cartMapped$ | async as products">
   <mat-list-item role="listitem" *ngFor="let cartItem of products | keyvalue">
     <span>{{ cartItem.value[0].title }}.</span>

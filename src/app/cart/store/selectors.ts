@@ -8,3 +8,8 @@ export const productsCartSelector = createSelector(
   cartFeatureSelector,
   (cartState: CartStateInterface) => cartState.products
 );
+
+export const emptyCartSelector = createSelector(
+  cartFeatureSelector,
+  (cartState: CartStateInterface) => cartState.products.length === 0
+);
