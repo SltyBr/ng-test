@@ -31,7 +31,7 @@ export class GetUserProfileEffect {
             });
           }),
           catchError((e) => {
-            if (e.name === "TokenExpiredError") {
+            if (e.error.name === "TokenExpiredError") {
               return of(getUserProfileTokenExpiredAction())
             }
             return of(getUserProfileFailureAction());

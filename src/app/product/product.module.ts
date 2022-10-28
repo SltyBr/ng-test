@@ -12,6 +12,7 @@ import { reducers } from 'src/app/product/store/reducers';
 import { GetProductEffect } from 'src/app/product/store/effects/getProduct.effect';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { ProductComponent } from './components/product/product.component';
+import { SalePriceModule } from 'src/app/shared/pipes/sale-price/sale-price.module';
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
     SwiperModule,
     MatCardModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    SalePriceModule
   ],
   providers: [
     ProductService
