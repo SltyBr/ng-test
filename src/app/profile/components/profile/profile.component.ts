@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
+import { getUserProfileAction } from 'src/app/auth/store/actions/getUserProfile.action';
 import { logoutAction } from 'src/app/auth/store/actions/logout.action';
 import { userProfileSelector } from 'src/app/auth/store/selectors';
 import { UserProfileInterface } from 'src/app/shared/types/userProfile.interface';
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
   }
 
   initializeValues() {
+    this.store.dispatch(getUserProfileAction());
     this.userProfile$ = this.store.pipe(select(userProfileSelector))
   }
 

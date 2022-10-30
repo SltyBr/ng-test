@@ -31,8 +31,8 @@ export class GetUserProfileEffect {
             });
           }),
           catchError((e) => {
-            if (e.error.name === "TokenExpiredError") {
-              return of(getUserProfileTokenExpiredAction())
+            if (e.error.name === 'TokenExpiredError') {
+              return of(getUserProfileTokenExpiredAction());
             }
             return of(getUserProfileFailureAction());
           })
@@ -44,11 +44,11 @@ export class GetUserProfileEffect {
   redirectOnTokenExpiredEffect$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(getUserProfileTokenExpiredAction),
+        ofType(getUserProfileTokenExpiredAction, getUserProfileFailureAction),
         tap(() => {
           this.persistanceService.remove(localStorageKeys.jwt);
           this.persistanceService.remove(localStorageKeys.userId);
-          this.router.navigateByUrl('/login')
+          this.router.navigateByUrl('/login');
         })
       ),
     { dispatch: false }

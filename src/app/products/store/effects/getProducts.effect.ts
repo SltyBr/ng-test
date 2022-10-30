@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 
 import {
   getProductsAction,
@@ -12,6 +12,7 @@ import { ProductsResponseInterface } from 'src/app/products/types/productsRespon
 import { getUserProfileTokenExpiredAction } from 'src/app/auth/store/actions/getUserProfile.action';
 import { PersistanceService } from 'src/app/shared/services/persistance.service';
 import { localStorageKeys } from 'src/environments/localStorageKeys';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class GetProductsEffect {
@@ -40,8 +41,18 @@ export class GetProductsEffect {
     );
   });
 
+  redirectToLoginPageEffect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(getProductsFailureAction),
+        tap(() => this.router.navigateByUrl('/login'))
+      ),
+    { dispatch: false }
+  )
+
   constructor(
     public actions$: Actions,
+    private router: Router,
     private productsService: ProductsService,
     private persistanceService: PersistanceService
   ) {}
