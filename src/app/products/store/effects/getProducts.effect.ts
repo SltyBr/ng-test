@@ -10,6 +10,8 @@ import {
 import { ProductsService } from 'src/app/products/services/products.service';
 import { ProductsResponseInterface } from 'src/app/products/types/productsResponse.interface';
 import { getUserProfileTokenExpiredAction } from 'src/app/auth/store/actions/getUserProfile.action';
+import { PersistanceService } from 'src/app/shared/services/persistance.service';
+import { localStorageKeys } from 'src/environments/localStorageKeys';
 
 @Injectable()
 export class GetProductsEffect {
@@ -17,6 +19,10 @@ export class GetProductsEffect {
     return this.actions$.pipe(
       ofType(getProductsAction),
       switchMap(({url}) => {
+        const token = this.persistanceService.get(localStorageKeys.jwt)
+        if (JSON.stringify(token) === '{}') {
+          return of(getProductsFailureAction());
+        }
         return this.productsService.getProducts(url).pipe(
           map((response: ProductsResponseInterface) => {
             return getProductsSuccessAction({
@@ -36,6 +42,7 @@ export class GetProductsEffect {
 
   constructor(
     public actions$: Actions,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private persistanceService: PersistanceService
   ) {}
 }
