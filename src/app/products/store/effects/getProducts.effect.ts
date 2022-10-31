@@ -51,7 +51,7 @@ export class GetProductsEffect {
   )
 
   constructor(
-    public actions$: Actions,
+    private actions$: Actions,
     private router: Router,
     private productsService: ProductsService,
     private persistanceService: PersistanceService

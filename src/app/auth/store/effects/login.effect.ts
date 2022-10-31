@@ -50,7 +50,7 @@ export class LoginEffect {
   );
 
   constructor(
-    public actions$: Actions,
+    private actions$: Actions,
     private authService: AuthService,
     private persistanceService: PersistanceService,
     private router: Router

@@ -31,7 +31,7 @@ export class GetProductEffect {
   });
 
   constructor(
-    public actions$: Actions,
+    private actions$: Actions,
     private productService: ProductService
   ) {}
 }
